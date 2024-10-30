@@ -1,0 +1,390 @@
+      body {
+          font-family: B Nazanin !important;
+          font-size: 10pt !important;
+      }
+
+      .progress-bar-success {
+          background: green;
+          font-family: byekan, Tahoma;
+      }
+
+      .progress-bar-red {
+          background: red;
+          font-family: byekan, Tahoma;
+      }
+
+      .percent {
+          font-family: byekan, Tahoma;
+      }
+
+      .OmidTejarat .BtnPay {
+          background-color: #089615 !important;
+          color: black !important;
+          font-size: 15px;
+      }
+
+      .OmidTejarat .mt-10 {
+          margin-top: 10px;
+      }
+
+      .OmidTejarat .mt-20 {
+          margin-top: 20px;
+      }
+
+      .OmidTejarat .mt-30 {
+          margin-top: 30px;
+      }
+
+      .OmidTejarat {
+          font-family: byekan !important;
+          overflow: hidden;
+      }
+
+      .OmidTejarat .pt-30 {
+          padding-right: 30px;
+      }
+
+      .OmidTejarat .ptl-30 {
+          padding-left: 30px;
+      }
+
+      .OmidTejarat .mb-10 {
+          margin-bottom: 10px;
+      }
+
+      .OmidTejarat .pt-70 {
+          padding-right: 70px;
+      }
+
+      .OmidTejarat .pt-10 {
+          padding-right: 10px;
+      }
+
+      .OmidTejarat .pt-60 {
+          padding-right: 60px;
+      }
+
+      .width {
+          width: 100% !important;
+      }
+
+      .OmidTejarat .Color {
+          background-color: #6AC8C7 !important;
+          color: white;
+          font-size: 25px;
+          height: 50px;
+      }
+
+      .OmidTejarat .ColorB {
+          background-color: #22448c !important;
+          color: white;
+          font-size: 15px;
+          height: 100px;
+      }
+
+      #ui-datepicker-div {
+          z-index: 2 !important;
+      }
+
+      .planDetailImg img {
+          width: 100%;
+          display: block;
+          max-height: 650px;
+          border-radius: 40px;
+      }
+
+      .planDetailSelect {
+          font-weight: bold;
+          font-size: 1.2rem;
+          font-family: 'YekanBakh' !important;
+          text-align: center;
+      }
+
+      html body .RadInput_Bootstrap .riTextBox,
+      html body .RadInputMgr_Bootstrap {
+          font-family: byekan;
+      }
+
+      .planProgressTitle {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          transition: .5s;
+      }
+
+      .planProgress {
+          margin-bottom: 15px;
+      }
+
+      .PDlblTitle {
+          font-size: 30px;
+          font-family: byekan !important;
+      }
+
+      .PDlblForcaseLabel {
+          font-size: 20px;
+      }
+
+      .PDlblForcaseDate {
+          color: #ababab;
+      }
+
+      .PDlblFirstMoneyLabel {
+          color: #000;
+          font-size: 22px;
+      }
+
+
+
+      .payBtnDiv .btn {
+          width: 30%;
+          margin-top: 20px;
+          padding: 15px 5px 13px;
+          border-radius: 12px;
+          border: 1px solid #02368c;
+          font-family: 'YekanBakh' !important;
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: #02368c!important;
+          background-color: #fff;
+      }
+
+
+      @media (max-width:991px) {
+          .has-bg {
+              padding: 15px !important;
+          }
+
+          .has-bg .form-group .PDplanProgress {
+              display: flex;
+              flex-direction: column !important;
+          }
+      }
+
+      .PDlblDesc {
+          border: 1px solid #e8e8e8;
+          padding: 15px;
+          height: 83px;
+          overflow: hidden;
+          text-align: center;
+          font-weight: 600;
+          font-size: 1rem;
+      }
+
+      .BtnPay {
+          padding: 9px 5px 32px;
+          border-radius: 3px;
+      }
+
+      .PDplanProgress .RadProgressBar {
+          width: 100% !important;
+          height: 8px !important;
+          background: #f9f9f9;
+          border-radius: 25px !important;
+      }
+
+      .PDplanProgress .rpbStateSelected {
+          background: #059712 !important;
+          border: none !important;
+          right: 0 !important;
+          border-radius: 25px !important;
+      }
+
+      .PDplanProgress .rpbLabelWrapper {
+          border: none !important;
+      }
+
+      .PDlblKeyBourd {
+          color: #ccc;
+      }
+
+      .omidFilterS select {
+          -webkit-appearance: none !important;
+          -moz-appearance: none !important;
+          -o-appearance: none !important;
+          appearance: none !important;
+          background-image: url('/UI/Styles/Default/images/selectArrow.png') !important;
+          background-repeat: no-repeat !important;
+          background-position-x: 6px !important;
+          background-position-y: center !important;
+          background-color: #fff;
+          color: #333;
+      }
+
+      .omidFilterH4 {
+          margin-top: 30px;
+          margin-bottom: 20px;
+          color: #fff;
+      }
+
+      .omidFilterH2 {
+          color: #fff;
+      }
+
+      .omidFilterS {
+          background: linear-gradient(to right bottom, #2ea2f3, #004494);
+          margin-bottom: 20px;
+      }
+
+      @media (min-width:767px) {
+          .omidFilterS {
+              padding-right: 90px;
+              padding-left: 90px;
+          }
+      }
+
+      .boldRed {
+          font-weight: bold;
+          color: red;
+          font-size: 20px;
+      }
+
+      .plnDetailTxt {
+          font-family: byekan !important;
+      }
+
+      .RadNotification,
+      .RadNotification * {
+          font-family: inherit;
+      }
+
+      .radnote-success .rnTitleBar {
+          background-color: #349d38;
+          border-color: #349d38;
+          color: #fff;
+          min-height: 40px;
+      }
+
+      .radnote-error .rnTitleBar {
+          background-color: #cf2727;
+          border-color: #cf2727;
+          color: #fff;
+          min-height: 40px;
+      }
+
+      .has-bg {
+          background-color: #fff;
+          border-radius: 40px;
+          padding: 30px;
+      }
+
+      .border-radius40 {
+          border-radius: 16px;
+      }
+
+      .PDlblTitle.title-nikoo span {
+          font-size: 1.5rem !important;
+          font-weight: bold;
+          font-family: 'YekanBakh' !important;
+      }
+
+      .detail-nikoo span:first-child {
+          font-weight: bold;
+      }
+
+      .detail-nikoo span:last-child {
+          font-weight: 600;
+          font-size: 1rem;
+      }
+
+      .detail-nikoo span:first-child {
+          font-size: 1.1rem;
+      }
+
+      .detail-nikoo .divMarTop10 {
+          margin-bottom: 0.3rem;
+      }
+
+      .detail-title {
+          text-align: center;
+          font-weight: bold;
+      }
+
+      .text-center span.detail-title {
+          text-align: center;
+          font-size: 1.5rem;
+      }
+
+      .chart-section text {
+          font-size: 1.5rem !important;
+          font-weight: bold;
+      }
+
+      div.highcharts-container svg g.highcharts-legend.highcharts-no-tooltip {
+          font-size: 1.5rem !important;
+          font-weight: bold !important;
+      }
+
+      .planDetailSelectBody .payBtnDiv.payBtn-group {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+      }
+
+      .otherprice-section input.other-price {
+          height: 46px !important;
+          direction: rtl;
+          box-shadow: unset !important;
+          font-family: 'YekanBakh' !important;
+          border-radius: 12px !important;
+          margin-bottom: 1rem !important;
+          border-color: #929597 !important;
+          font-size: 0.8rem !important;
+          font-weight: 600 !important;
+      }
+
+      .plandetail-payBtn a.BtnPay:not(#ctl08_ctl00__hlSale) {
+          padding: 13px 5px 10px;
+          border-radius: 12px;
+          background-color: #F18E00 !important;
+      }
+
+      .plandetail-payBtn a.BtnPay span {
+          background-color: transparent !important;
+          font-family: 'YekanBakh' !important;
+          font-size: 0.8rem !important;
+          font-weight: 600 !important;
+      }
+
+      .hamyar-count span:last-child,
+      .hamyar-count {
+          font-weight: 600 !important;
+          font-size: 1rem !important;
+          font-family: 'YekanBakh' !important;
+      }
+
+      .btn-red {
+          background-color: #FF3131;
+          color: #fff;
+          font-family: 'YekanBakh' !important;
+      }
+
+      .btn-left {
+          text-align: left;
+      }
+
+
+      .omidFilterS-Category {
+          display: flex;
+          gap: 8px;
+      }
+
+      @media(max-width:767px) {
+          .price-section {
+              margin-top: 3rem;
+          }
+      }
+
+
+      .payBtnDiv .btn:focus {
+        width: 30%;
+        margin-top: 20px;
+        padding: 15px 5px 13px;
+        border-radius: 12px;
+        border: 1px solid #02368c;
+        font-family: 'YekanBakh' !important;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: #fff!important;
+        background-color: #02368c!important;
+    }
