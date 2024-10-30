@@ -1,0 +1,474 @@
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="PlanDetail.ascx.cs" Inherits="Intranet.DesktopModules.OmidTejarat.View.PlanDetail" %>
+<%@ Import Namespace="Intranet.Configuration.Settings" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI, Version=2016.1.225.45, Culture=neutral, PublicKeyToken=121fae78165ba3d4" %>
+<telerik:RadCodeBlock runat="server">
+    <script src="<%= PortalSettings.PortalPath %>/DesktopModules/OmidTejarat/AddOn/JS/highcharts.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var category = document.getElementById('<%= _hfDate.ClientID %>').value.split(',');
+            var view = document.getElementById('<%= _hfNeccessaryMoney.ClientID %>').value.split(',').map(Number);
+
+            Highcharts.chart('_rhcOrder', {
+                chart: {
+                    type: 'spline',
+                    animation: Highcharts.svg,
+                    marginRight: 10,
+                    style: {
+                        fontFamily: 'IranSans'
+                    }
+                },
+                title: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: category,
+                    crosshair: true,
+                    title: {
+                        text: 'تاریخ'
+                    }
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'سرمایه موردنیاز'
+                    },
+                    lineWidth: 1
+                },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br/>',
+                    pointFormat: '<b>{point.y} ریال </b>'
+                },
+                plotOptions: {
+                    column: {
+                        borderWidth: 0,
+                        borderRadius: 5,
+                        pointWidth: 7,
+                        pointPadding: 0
+                    },
+                    series: {
+                        groupPadding: 0.35,
+                        dataLabels: {
+                            enabled: true,
+                            borderRadius: 2,
+                            y: -10,
+                            shape: null
+                        }
+                    }
+                },
+                legend: {
+                    rtl: true
+                },
+                series: [{
+                    name: 'نمودار پیشرفت مالی',
+                    data: view,
+                    color: '#3E66FB'
+                }]
+            });
+        });
+
+    </script>
+    <link href='<%=ResolveUrl("~/desktopmodules/OmidTejarat/AddOn/Style/style.css") %>' rel="stylesheet" />
+    <script>
+        function teleShare() {
+
+
+            // var r = confirm("Share the address of this page to Telegram?");
+            var oldlocation = window.location.href;
+            window.location.replace('https://telegram.me/share/url?text=&url=' + oldlocation);
+            //window.location.replace('https://telegram.me/share?text=&url=' + oldlocation);
+            //window.location.replace('https://telegram.me/share/url?text=&url=' + oldlocation);
+            //if (r == true) {
+
+            //}
+        }
+
+    </script>
+    <script src='<%=Page.ResolveUrl("~/DeskTopModules/OmidTejarat/Addon/JS/jssocials/jssocials.js")%>'></script>
+    <link href='<%=Page.ResolveUrl("~/desktopmodules/OmidTejarat/Addon/Css/jssocials/jssocials-theme-classic.css")%>' rel="stylesheet" />
+    <link href='<%=Page.ResolveUrl("~/desktopmodules/OmidTejarat/Addon/Css/jssocials/jssocials.css")%>' rel="stylesheet" />
+    <link href='<%=Page.ResolveUrl("~/UI/Base/AddOn/font-awesome-4.3.0/css/font-awesome.min.css")%>' rel="stylesheet" />
+
+    <meta runat="server" id="meta1" property="og:title" content="" />
+    <meta runat="server" id="meta2" property="og:site_name" content="" />
+    <meta runat="server" id="meta3" property="og:description" content="" />
+    <meta runat="server" id="meta4" property="og:image" content="" />
+
+    <script>
+        $(document).ready(function () {
+            var priceHf = document.getElementById("<%=_hfPrice.ClientID %>");
+
+            priceHf.value = $("#_btn100").text();
+        });
+
+
+        function autocalc(selector, value) {
+            $(selector).val(value.toString().replace(/,/g, '').replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
+            var txtPrice = document.getElementById("<%=_txtprice.ClientID %>");
+            var btnPayment = document.getElementById("<%=_lblPrice.ClientID %>");
+            btnPayment.innerHTML = txtPrice.value + ' ریال ';
+            var priceHf = document.getElementById("<%=_hfPrice.ClientID %>");
+            priceHf.value = btnPayment.innerHTML;
+        }
+
+        function ChangeSaleBtnValue(selector) {
+            $("#_btn100").css({ color: '#F18E00' });
+            $("#_btn100").css({ backgroundColor: '#ffffff' });
+            $("#_btn500").css({ backgroundColor: '#ffffff' });
+            $("#_btn500").css({ color: '#F18E00' });
+            $("#_btn1000000").css({ backgroundColor: '#ffffff' });
+            $("#_btn1000000").css({ color: '#F18E00' });
+            $("#_btn2000000").css({ backgroundColor: '#ffffff' });
+            $("#_btn2000000").css({ color: '#F18E00' });
+            $("#_btn5000000").css({ backgroundColor: '#ffffff' });
+            $("#_btn5000000").css({ color: '#F18E00' });
+            $("#_btn10000000").css({ backgroundColor: '#ffffff' });
+            $("#_btn10000000").css({ color: '#F18E00' });
+
+            selector.style.backgroundColor = "#F18E00";
+            selector.style.color = "white";
+            var saleBtn = document.getElementById("<%=_lblPrice.ClientID %>");
+            var priceHf = document.getElementById("<%=_hfPrice.ClientID %>");
+            saleBtn.innerHTML = selector.innerText;
+            priceHf.value = selector.innerText;
+        }
+        <%-- $(document).ready(function() {
+            var btn100 = document.getElementById("<%=_btn100.ClientID %>");
+            $(btn100).click(function() {});
+        });--%>
+
+    </script>
+</telerik:RadCodeBlock>
+
+<telerik:RadAjaxPanel runat="server" ID="_rapMain" LoadingPanelID="_ralpMain" EnableAJAX="False">
+    <%--    <input type="text" value="software engineer" id="_hlSale1"  onkeyup="autocalc(this,true)" >--%>
+
+    <div class="row alert alert-info" runat="server" visible="False" id="_divAlert">
+        <asp:Label ID="_lblalert" runat="server" />
+    </div>
+    <div class="OmidTejarat" runat="server" id="_divGeneral">
+    <div class="container-fluid px-0">
+        <asp:Panel ID="_PnlShow" runat="server">
+
+           
+                <div class="container-fluid">
+                    <div class="row">
+                            <div class="col-12 planDetailImg noPaddingR mt-5 ">
+                               
+                            </div>
+                    </div>
+                </div>
+                <div class="container-fluid mt-5">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="has-bg">
+                                <div class="form-group">
+                                    <div class="row PDplanProgress">
+                                        <div class=" col-xs-12 col-md-5 pull-left noPaddingL">   
+                                                <asp:ImageButton ID="__imgLogo" runat="server" OnClick="__imgLogo_OnClick" class="img-responsive imgStyle borderedPic" />   
+                                                <asp:Image ID="_img" runat="server" />  
+                                        </div>
+                                    
+                                        <!--
+                                        <div class="col-xs-12 divMarTop10" runat="server" visible="False">
+                                            <asp:Label Text="کلید واژه ها :" runat="server" />
+                                        </div>-->
+                                        <div class="col-xs-12 divMarTop10" runat="server" visible="False">
+                                            <asp:Label Text="نام گروه :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblCatName" />
+                                        </div>
+                                        <div class="col-xs-12 divMarTop10" runat="server" visible="False">
+                                            <asp:Label Text="نام سازمان :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblCreator" />
+                                        </div>
+                                        <div class="col-xs-12 divMarTop10" runat="server" visible="False">
+                                            <asp:Label Text="روزهای باقیمانده    :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblRemainingDays" />
+                                        </div>
+
+                                        <div class="col-xs-12 divMarTop10" runat="server" visible="False">
+                                            <asp:Label Text=" محل اجرای طرح :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblPlanLocation" />
+                                        </div>
+
+                                        <div class="col-xs-12 divMarTop10" runat="server" visible="False">
+                                            <asp:Label Text="  لینک خبر  :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblLink" />
+                                        </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                    <div class="col-12 col-xs-12 divMarTop10 PDlblDesc mt-3 border-radius40">
+                                            <asp:Label Text="  خلاصه :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblDesc" />
+
+                                            <asp:Label runat="server" class="PDlblKeyBourd" ID="_lblKeyBourd" />
+                                    </div>  
+                                </div>
+                            </div>
+                        <div class="col-md-6 col-xs-12">
+                         <div class="col-md-7 detail-nikoo">
+                                        <div class="col-xs-12 col-md-12 divMarTop10 PDlblTitle title-nikoo" runat="server">
+                                            <asp:Label Text="عنوان :" runat="server" Visible="false" />
+                                            <asp:Label runat="server" ID="_lblTitle" />
+                                        </div>
+                                        <div class="col-xs-12 divMarTop10 planProgressPB" runat="server">
+                                            <%--      <telerik:RadProgressBar  runat="server" Width="200px" ID="TuningProgressBar" ShowLabel="false">
+                            
+                                            </telerik:RadProgressBar>--%>
+                                            <asp:Panel runat="server" ID="_pnlMain"></asp:Panel>
+                                        </div>
+                                        <div class="col-xs-12" runat="server" visible="False">
+                                            <asp:Label runat="server" ID="_lblFinPercent" />
+                                        </div>
+                                        <div class="col-xs-12 PDlblFirstMoney divMarTop10 ">
+                                            <asp:Label Text="سرمایه تامین شده :" runat="server" />
+                                            <asp:Label runat="server" class="PDlblFirstMoneyLabel" ID="_lblFirstMoney" />
+                                        </div>
+                                        <div class="col-xs-12  divMarTop10 ">
+                                            <asp:Label Text="سرمایه موردنیاز   :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblNessMoney" />
+                                        </div>
+
+                                        <div class="col-xs-12 divMarTop10">
+                                            <asp:Label Text="هزینه اجرای طرح :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblExecutePlan" />
+                                        </div>
+                                        <div class="col-xs-12 divMarTop10 ">
+                                            <asp:Label Text=" تاریخ شروع طرح   :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblStartDate" />
+                                        </div>
+                                        <div class="col-xs-12 divMarTop10 hamyar-count" runat="server">
+                                            <asp:Label Text="تعداد حامیان :" runat="server" />
+                                            <asp:Label runat="server" ID="_lblSponsorsNumber" />
+                                            نفر
+                                        </div>
+                                        <div class="col-xs-12  divMarTop10">
+                                            <asp:Label runat="server"  ID="_lblForcaseDate" />
+                                        </div>
+                                        <div class="col-xs-12 divMarTop10" runat="server" visible="False">
+                                        <asp:Label Text="سهامداران :" runat="server" />
+                                        <asp:Label runat="server" ID="_lblStackholder" />
+                                    </div>
+                            <div class="has-bg price-section">
+                        
+                                <asp:Panel runat="server" ID="_pnlPayment" CssClass="divMarTop10">
+                    
+                        
+                                <div class="planDetailSelect">
+                                    مبلغ را انتخاب کنید
+                                </div>
+
+                                <div class="col-xs-12 planDetailSelectBody">
+                                    <div class="col-xs-12 col-md-12 payBtnDiv payBtn-group">
+                                        <button class=" btn " type="button" id="_btn100" onclick="ChangeSaleBtnValue(this)" style="background-color: #F18E00; color: white">
+                                            100,000ریال
+                                        </button>
+                                        <button class=" btn " type="button" id="_btn500" onclick="ChangeSaleBtnValue(this)">
+                                            500,000 ریال
+                                        </button>
+                                        <button class=" btn " type="button" id="_btn1000000" onclick="ChangeSaleBtnValue(this)">
+                                            1,000,000 ریال
+                                        </button>
+
+                                        <button class=" btn" type="button" id="_btn2000000" onclick="ChangeSaleBtnValue(this)">
+                                            2,000,000 ریال
+                                        </button>
+                                        <button class=" btn" type="button" id="_btn5000000" onclick="ChangeSaleBtnValue(this)">
+                                            5,000,000 ریال
+                                        </button>
+                                        <button class=" btn" type="button" id="_btn10000000" onclick="ChangeSaleBtnValue(this)">
+                                            10,000,000 ریال
+                                        </button>
+
+                                    </div>
+
+                                    <div class="col-xs-12 col-md-12 divMarTop10 mt-3 otherprice-section">
+
+                                        <telerik:RadNumericTextBox CssClass="form-control other-price" Width="100%" dir="ltr" onkeyup="autocalc(this,this.value)" placeholder="سایرمبالغ را وارد کنید"
+                                            runat="server" ID="_txtprice">
+                                            <incrementsettings interceptarrowkeys="False" interceptmousewheel="False" />
+                                            <numberformat zeropattern="n" allowrounding="False" decimaldigits="0"></numberformat>
+                                        </telerik:RadNumericTextBox>
+                                    </div>
+                                    <div class="col-xs-12 col-md-12 divMarTop10 plandetail-payBtn">
+                                        <asp:LinkButton ID="_hlSale" class="btn BtnPay form-control" runat="server" ValidationGroup="save" OnClick="_hlSale_OnClick">
+                                        
+                                            <asp:HiddenField runat="server" ID="_hfPrice" />
+                                            <asp:Label ID="_lblPrice" Text="100.000 ریال " runat="server" Style="background-color: #089615; color: white" />
+                                        </asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
+                            </asp:Panel>
+                        
+                        </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+
+            <div class="container">
+                <div class="row">
+                <div class="col-xs-12 divMarTop10">
+                    <div class="divMarTop10 has-bg mt-4 mb-4 text-center" runat="server">
+                        <asp:Label class="detail-title" Text=" جزییات  طرح   :" runat="server" />
+                        <asp:Label class="plnDetailTxt" runat="server" ID="_lblPlanText" />
+                    </div>
+                </div>
+            </div>
+            </div>
+        </asp:Panel>
+    </div>
+    <div class="container">
+        <div class="divMarTop10">
+            <div class="col-12 has-bg">
+
+                        <asp:Panel runat="server" Visible="False"></asp:Panel>
+            <asp:Panel runat="server" ID="_pnlUser" CssClass="panel" Visible="False">
+                    <asp:Label Text=" لیست نیکوکاران " runat="server" ID="_lblOtherBook" CssClass="text-center" />
+                    <div class="row divMarTop10 ">
+                        <div class="col-xs-12">
+                            <telerik:RadGrid ID="_rdShow" runat="server" AllowPaging="True" AllowSorting="True" OnNeedDataSource="_rdShow_OnNeedDataSource"
+                                PageSize="10"
+                                AutoGenerateColumns="False">
+                                <exportsettings exportonlydata="True" hidestructurecolumns="True" ignorepaging="True">
+                            </exportsettings>
+                                <mastertableview nomasterrecordstext="ایتمی برای نمایش دادن وجود ندارد " allowfilteringbycolumn="True">
+                                <Columns>
+                                    <telerik:GridBoundColumn DataField="FullName" HeaderText="نام" AllowFiltering="True">
+                                        <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                    </telerik:GridBoundColumn>
+                                        <telerik:GridBoundColumn DataField="Profile.User.UserName" HeaderText="نام کاربری" AllowFiltering="True">
+                                        <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                    </telerik:GridBoundColumn>
+                                <telerik:GridBoundColumn DataField="Profile.User.Tell" HeaderText="شماره موبایل" AllowFiltering="True">
+                                        <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                    </telerik:GridBoundColumn>
+                                    <telerik:GridBoundColumn DataField="Profile.User.Email" HeaderText="ایمیل" AllowFiltering="true">
+                                        <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                    </telerik:GridBoundColumn>                                       
+                                    <telerik:GridBoundColumn DataField="StrPrice" HeaderText="میزان کمک (ریال)" >
+                                    <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                    </telerik:GridBoundColumn>                                     
+                                        
+                                </Columns>
+                            </mastertableview>
+                            </telerik:RadGrid>
+                        </div>
+                    </div>
+                </asp:Panel>
+            <asp:Panel ID="_pnlPay" runat="server"></asp:Panel>
+           
+            <asp:Panel runat="server" ID="_pnlReport">
+                <asp:HiddenField runat="server" ID="_hfDate" />
+                <asp:HiddenField runat="server" ID="_hfNeccessaryMoney" />
+                <div id="_rhcOrder"></div>
+                <div dir="ltr chart-section" runat="server" Visible="False">
+                    <telerik:RadHtmlChart runat="server" ID="_rdHtmlChart" CssClass="text-center" Transitions="True" Skin="Silk">
+                        <plotarea>
+                            <Series>
+                                <telerik:LineSeries MissingValues="Interpolate" Visible="True" DataFieldY="NecessaryMoney" Name="نمودار پیشرفت مالی">
+                                    <TooltipsAppearance>
+                                        <ClientTemplate>
+                                            #=dataItem.Date#<br/>#=dataItem.NecessaryMoney# ریال
+                                        </ClientTemplate>
+                                    </TooltipsAppearance>
+                                    <LineAppearance LineStyle="Smooth"></LineAppearance>
+                                    <LabelsAppearance ><TextStyle FontFamily="byekan"></TextStyle></LabelsAppearance>
+                                </telerik:LineSeries>
+                             
+                            </Series>
+                            <Appearance>
+                                <FillStyle BackgroundColor="Transparent"></FillStyle>
+                            </Appearance>
+                            <XAxis DataLabelsField="Date">
+                                <MajorGridLines Visible="true"/>
+                                <MinorGridLines Visible="false" />
+                                <LabelsAppearance RotationAngle="90">
+                                    <TextStyle FontFamily="byekan" FontSize="16px" Bold="True"></TextStyle>
+                                    <DateFormats YearsFormat="yyyy"></DateFormats>
+                                    <DateFormats MonthsFormat="yyyy-MM"></DateFormats>
+                                    <DateFormats DaysFormat="MM-d"></DateFormats>
+                                    <DateFormats HoursFormat="yyyy-MM-d" ></DateFormats>
+                                </LabelsAppearance>
+                                   
+          
+                                <TitleAppearance Text="تاریخ" Position="Left">
+                                    <TextStyle Margin="20px" FontFamily="byekan" FontSize="13px" Bold="True" />
+                                </TitleAppearance>
+                            </XAxis>
+                            <YAxis AxisCrossingValue="0" Color="black" MajorTickSize="1" MajorTickType="Outside" 
+                            MinorTickType="None" Reversed="false">
+                                 <MinorGridLines  />
+                                <LabelsAppearance TextStyle-FontFamily="byekan" DataFormatString="{0}" RotationAngle="0"></LabelsAppearance>
+                                <TitleAppearance Position="Center" Text="سرمایه موردنیاز">
+                                    <TextStyle Margin="20px" FontFamily="byekan" FontSize="13px" Bold="True" />
+                                </TitleAppearance>
+                                <%--<MinorGridLines Visible="false" />--%>
+                            </YAxis>
+                        </plotarea>
+
+                        <appearance>
+                            <FillStyle BackgroundColor="White"></FillStyle>
+                        </appearance>
+                        <charttitle text="">
+                            <Appearance Align="Center" BackgroundColor="Transparent" Position="Top">
+                                <TextStyle Margin="5px"  FontFamily="byekan" FontSize="13px" Bold="True"></TextStyle>
+                            </Appearance>
+                        </charttitle>
+                        <legend>
+                            <appearance>
+                                <TextStyle Margin="20px" FontFamily="byekan" FontSize="13px" Bold="True" />
+                            </appearance>
+                        </legend>
+                    </telerik:RadHtmlChart>
+
+                </div>
+            </asp:Panel>
+
+            <telerik:radnotification id="_radNotification" runat="server" position="BottomRight" title="" titleicon=""
+                animation="Slide" offsetx="-10" offsety="-50" showclosebutton="true"
+                autoclosedelay="0" width="350" height="100" enableroundedcorners="true" visibletitlebar="True" skin="Bootstrap"
+                enableshadow="True" keeponmouseover="True" rendermode="Lightweight" enabletheming="True">
+            </telerik:radnotification>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="container-fluid">
+    <div class="row btn-left">
+        <div class="col-xs-12 form-horizontal divMarTop10 mt-4 ">
+
+            <asp:HyperLink runat="server" CssClass="btn btn-red  " ID="_hlback">
+                                <span class="glyphicon glyphicon-share-alt"></span> بازگشت   
+            </asp:HyperLink>
+
+        </div>
+    </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12  mt-30">
+            <div id="shareRoundIcons">
+            </div>
+            <script>
+
+
+                $("#shareRoundIcons").jsSocials({
+
+                    showLabel: false,
+                    showCount: false,
+                    shares: ["twitter", "telegram", "facebook"]
+                });
+
+
+            </script>
+
+        </div>
+    </div>
+</telerik:RadAjaxPanel>
+<telerik:RadAjaxLoadingPanel runat="server" Skin="Silk" ID="_ralpMain"></telerik:RadAjaxLoadingPanel>
